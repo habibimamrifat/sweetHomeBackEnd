@@ -211,7 +211,7 @@ async function run() {
     // await dataInjection(allFevouriteCollection)
 
     // all cake collection for market place down
-    app.get("/", async (req, res) => {
+    app.get("/home", async (req, res) => {
       const result = await allCakeCollection.find({$or: [
         { deleted: { $exists: false } },
         { deleted: false }
