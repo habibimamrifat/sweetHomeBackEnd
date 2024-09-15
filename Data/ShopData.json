@@ -1,0 +1,62 @@
+[
+  {
+    "bannerimg": "https://www.shutterstock.com/image-vector/banner-design-cakes-muffins-cupcakes-260nw-2107733129.jpg",
+    "logoimg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxAIOCSGuavj4xnF5EtmZJT-hynhRtiXbjNA&s",
+    "name": "Black Black",
+    "email": "shop1@gmail.com",
+    "mob": "01987654321",
+    "mobAlt": "01711223344",
+    "address": "123 Main Street, London",
+    "deleteBannerImg": "https://ibb.co/w7r9vTN",
+    "deleteLogoImg": "https://ibb.co/tQmhtpr",
+    "shopOwnerId": "66e55cd2509ba71368ec12eb"
+  },
+  {
+    "bannerimg": "https://static.vecteezy.com/system/resources/thumbnails/016/937/046/small_2x/bakery-shop-web-banner-free-vector.jpg",
+    "logoimg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtcN4m4dD19Zno1PpBPhoYKdwGPFAClxxXQ&s",
+    "name": "Speedster Rides",
+    "email": "shop2@gmail.com",
+    "mob": "01812345678",
+    "mobAlt": "01633445566",
+    "address": "456 Race Avenue, New York",
+    "deleteBannerImg": "https://ibb.co/ZYWv8dW",
+    "deleteLogoImg": "https://ibb.co/nrX4zvV",
+    "shopOwnerId": "66e55cd2509ba71368ec12ec"
+  },
+  {
+    "bannerimg": "https://t3.ftcdn.net/jpg/06/55/10/22/360_F_655102205_YTOIQosln39eixRyVVXu0S41EAGcsbZw.jpg",
+    "logoimg": "https://t4.ftcdn.net/jpg/04/50/35/33/360_F_450353376_69Lp5NmR674oWG82ReeTU7JCsEqIpNH5.jpg",
+    "name": "Custom Motorworks",
+    "email": "shop3@gmail.com",
+    "mob": "01798765432",
+    "mobAlt": "01599887766",
+    "address": "789 Workshop Road, Los Angeles",
+    "deleteBannerImg": "https://ibb.co/QbZJgCX",
+    "deleteLogoImg": "https://ibb.co/9tqMLmJ",
+    "shopOwnerId": "66e55cd2509ba71368ec12ed"
+  },
+  {
+    "bannerimg": "https://images.twinkl.co.uk/tw1n/image/private/t_630_eco/image_repo/7d/40/t-lf-1670237180-cake-shop-banner_ver_1.jpg",
+    "logoimg": "https://cdn.vectorstock.com/i/1000v/83/86/cake-bakery-shop-logo-design-template-vector-30208386.jpg",
+    "name": "Vintage Cycles",
+    "email": "shop4@gmail.com",
+    "mob": "01922334455",
+    "mobAlt": "01644556677",
+    "address": "1010 Antique Lane, San Francisco",
+    "deleteBannerImg": "https://ibb.co/M20yShK",
+    "deleteLogoImg": "https://ibb.co/nQzYyCm",
+    "shopOwnerId": "66e55cd2509ba71368ec12ee"
+  },
+  {
+    "bannerimg": "https://static.vecteezy.com/system/resources/previews/043/628/767/non_2x/cake-banner-design-free-vector.jpg",
+    "logoimg": "https://marketplace.canva.com/EAFyqNXxeew/1/0/1600w/canva-white-and-pink-simple-cake-shop-logo-vwi6yEIhAoA.jpg",
+    "name": "Classic Motors",
+    "email": "shop5@gmail.com",
+    "mob": "01755667788",
+    "mobAlt": "01833445566",
+    "address": "2020 Heritage Street, Miami",
+    "deleteBannerImg": "https://ibb.co/MQGZyb7",
+    "deleteLogoImg": "https://ibb.co/JjbCkHt",
+    "shopOwnerId": "66e55cd2509ba71368ec12ef"
+  }
+]

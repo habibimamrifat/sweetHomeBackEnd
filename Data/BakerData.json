@@ -1,0 +1,57 @@
+[
+    {
+      "personalImg": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+      "deleteImgLink": "https://ibb.co/M20yShK",
+      "name": "John Doe",
+      "email": "baker11@gmail.com",
+      "mob": "01987654321",
+      "mobAlt": "01711223344",
+      "address": "123 Baker Street, London",
+      "password": "password123",
+      "reInterPassword": "password123"
+    },
+    {
+      "personalImg": "https://plus.unsplash.com/premium_photo-1664536392896-cd1743f9c02c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW4lMjBiZWluZ3xlbnwwfHwwfHx8MA%3D%3D",
+      "deleteImgLink": "https://ibb.co/ZYWv8dW",
+      "name": "Jane Smith",
+      "email": "baker12@gmail.com",
+      "mob": "01812345678",
+      "mobAlt": "01622334455",
+      "address": "456 Main Avenue, New York",
+      "password": "securePass456",
+      "reInterPassword": "securePass456"
+    },
+    {
+      "personalImg": "https://cdn.pixabay.com/photo/2023/04/21/15/42/portrait-7942151_640.jpg",
+      "deleteImgLink": "https://ibb.co/nrX4zvV",
+      "name": "Alice Johnson",
+      "email": "baker13@gmail.com",
+      "mob": "01798765432",
+      "mobAlt": "01533445566",
+      "address": "789 Sunset Boulevard, Los Angeles",
+      "password": "alicePass789",
+      "reInterPassword": "alicePass789"
+    },
+    {
+      "personalImg": "https://plus.unsplash.com/premium_photo-1664203067979-47448934fd97?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHx8fDA%3D",
+      "deleteImgLink": "https://ibb.co/QbZJgCX",
+      "name": "Robert Brown",
+      "email": "baker14@gmail.com",
+      "mob": "01912345678",
+      "mobAlt": "01755667788",
+      "address": "1010 Pine Street, San Francisco",
+      "password": "robertPass101",
+      "reInterPassword": "robertPass101"
+    },
+    {
+      "personalImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAiRQwXf9TTpgIOStvwMpdGBeEQecgottZew&s",
+      "deleteImgLink": "https://ibb.co/9tqMLmJ",
+      "name": "Chris Evans",
+      "email": "baker15@gmail.com",
+      "mob": "01567891234",
+      "mobAlt": "01899887766",
+      "address": "2020 Ocean Drive, Miami",
+      "password": "chrisSecure202",
+      "reInterPassword": "chrisSecure202"
+    }
+  ]
