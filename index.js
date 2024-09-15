@@ -1,14 +1,14 @@
 import express, { json, response } from "express";
 const app = express();
-const port = process.env.Port || 5000;
+const port = process.env.PORT || 5000;
 import cors from "cors";
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 import dotenv from "dotenv"
 dotenv.config()
 
-const M_userName = process.env.Mongo_User_Name
-const M_password =process.env.Mongo_User_Password
+const M_userName=process.env.Mongo_User_Name
+const M_password=process.env.Mongo_User_Password
 
 // for file reading
 import fs from "fs";
