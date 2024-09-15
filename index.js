@@ -7,8 +7,8 @@ import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 import dotenv from "dotenv"
 dotenv.config()
 
-const M_userName=process.env.Mongo_User_Name
-const M_password=process.env.Mongo_User_Password
+const M_userName = process.env.Mongo_User_Name
+const M_password =process.env.Mongo_User_Password
 
 // for file reading
 import fs from "fs";
@@ -155,7 +155,7 @@ const allShopCollectionFake = [
 
 //fake data ....................
 
-//*************************************************** */
+//************************************************** */
 
 const uri =
   `mongodb+srv://${M_userName}:${M_password}@sweethome.gfjhoj6.mongodb.net/?retryWrites=true&w=majority&appName=SweetHome`;
