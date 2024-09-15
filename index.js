@@ -212,11 +212,18 @@ async function run() {
 
     // all cake collection for market place down
     app.get("/", async (req, res) => {
-      const result = await allCakeCollection.find({$or: [
-        { deleted: { $exists: false } },
-        { deleted: false }
-      ]}).toArray();
-      res.send(result);
+      try {
+        const result = await allCakeCollection.find({
+          $or: [
+            { deleted: { $exists: false } },
+            { deleted: false }
+          ]
+        }).toArray();
+        res.send(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).send("Failed to fetch data");
+      }
     });
     // all cake collection for market place up
 
