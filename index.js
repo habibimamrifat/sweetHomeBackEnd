@@ -4,18 +4,18 @@ const port = process.env.PORT || 5000;
 import cors from "cors";
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
-import dotenv from "dotenv"
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
-const M_userName = process.env.Mongo_User_Name
-const M_password =process.env.Mongo_User_Password
+const M_userName = process.env.Mongo_User_Name;
+const M_password = process.env.Mongo_User_Password;
 
 // for file reading
 import fs from "fs";
 import { resolveMx } from "dns";
 
 // middleWare
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 //fake data ....................
@@ -157,8 +157,7 @@ const allShopCollectionFake = [
 
 //************************************************** */
 
-const uri =
-  `mongodb+srv://${M_userName}:${M_password}@sweethome.gfjhoj6.mongodb.net/?retryWrites=true&w=majority&appName=SweetHome`;
+const uri = `mongodb+srv://${M_userName}:${M_password}@sweethome.gfjhoj6.mongodb.net/?retryWrites=true&w=majority&appName=SweetHome`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -213,12 +212,11 @@ async function run() {
     // all cake collection for market place down
     app.get("/", async (req, res) => {
       try {
-        const result = await allCakeCollection.find({
-          $or: [
-            { deleted: { $exists: false } },
-            { deleted: false }
-          ]
-        }).toArray();
+        const result = await allCakeCollection
+          .find({
+            $or: [{ deleted: { $exists: false } }, { deleted: false }],
+          })
+          .toArray();
         res.send(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -338,22 +336,20 @@ async function run() {
     });
 
     // find fev cake list
-    app.get("/customerFaveCakeList/:customerId",async(req,res)=>{
-      const {customerId}=req.params
+    app.get("/customerFaveCakeList/:customerId", async (req, res) => {
+      const { customerId } = req.params;
 
-     try{
-      const request = await allFevouriteCollection.findOne({
-        customerId:customerId
-      })
-      // console.log(request)
-      res.send(request)
-     }
-     catch(error)
-     {
-      // console.log("error on server",error)
-      res.send({message:"something went wrong in server",error})
-     }
-    })
+      try {
+        const request = await allFevouriteCollection.findOne({
+          customerId: customerId,
+        });
+        // console.log(request)
+        res.send(request);
+      } catch (error) {
+        // console.log("error on server",error)
+        res.send({ message: "something went wrong in server", error });
+      }
+    });
 
     //add cake to favourite list
     app.post(
@@ -364,7 +360,7 @@ async function run() {
         const cakeId = fevCakeAndCustomer.favouriteCake;
 
         try {
-          const targetCustomerFevlist =await allFevouriteCollection.findOne({
+          const targetCustomerFevlist = await allFevouriteCollection.findOne({
             customerId: customerId,
           });
 
@@ -374,20 +370,20 @@ async function run() {
                 { customerId: customerId },
                 { $pull: { fevCakeList: cakeId } }
               );
-              res.send({message:"cake removed to fevourite list",result});
+              res.send({ message: "cake removed to fevourite list", result });
             } else {
               const result = await allFevouriteCollection.updateOne(
                 { customerId: customerId },
                 { $addToSet: { fevCakeList: cakeId } }
               );
-              res.send({message:"cake added to fevourite list",result});
+              res.send({ message: "cake added to fevourite list", result });
             }
           } else {
             const result = await allFevouriteCollection.insertOne({
               customerId: customerId,
               fevCakeList: [cakeId],
             });
-            res.send({message:"cake added to fevourite list",result});
+            res.send({ message: "cake added to fevourite list", result });
           }
         } catch (error) {
           res.send({ message: "sarver section code problem", error });
@@ -407,19 +403,22 @@ async function run() {
     });
 
     // find singleShop
-    app.get("/baker/findSingleShop/:shopId", async(req, res)=>{
-      const {shopId} = req.params
+    app.get("/baker/findSingleShop/:shopId", async (req, res) => {
+      const { shopId } = req.params;
       // console.log("shopId",shopId)
-      try{
-        const shopData = await allShopCollection.findOne({_id :new ObjectId(shopId)})
+      try {
+        const shopData = await allShopCollection.findOne({
+          _id: new ObjectId(shopId),
+        });
         // console.log(shopData)
-        res.send(shopData)
+        res.send(shopData);
+      } catch (error) {
+        res.send({
+          message: "something went wrong fetching single Shop",
+          error,
+        });
       }
-      catch(error)
-      {
-        res.send({message:'something went wrong fetching single Shop',error})
-      }
-    })
+    });
 
     //create a shop***
     app.post("/signUpPage/bakerSignUp/createShop", async (req, res) => {
@@ -469,10 +468,10 @@ async function run() {
 
       try {
         const result = await allCakeCollection
-          .find({ shop_id: shopId, $or: [
-            { deleted: { $exists: false } },
-            { deleted: false }
-          ]})
+          .find({
+            shop_id: shopId,
+            $or: [{ deleted: { $exists: false } }, { deleted: false }],
+          })
           .toArray();
         res.send(result);
       } catch (error) {
@@ -494,46 +493,42 @@ async function run() {
     });
 
     // updateCake
-    app.put("/baker/UpdateACake/:cakeId",async(req,res)=>{
-      const {cakeId} = req.params
-      const updateCake = req.body
+    app.put("/baker/UpdateACake/:cakeId", async (req, res) => {
+      const { cakeId } = req.params;
+      const updateCake = req.body;
       // console.log(cakeId,updateCake)
 
-      try{
+      try {
         const result = await allCakeCollection.updateOne(
-          {_id: new ObjectId(cakeId)},
-          {$set:updateCake},
-          {upsert:true}
-        )
-        res.send(result)
+          { _id: new ObjectId(cakeId) },
+          { $set: updateCake },
+          { upsert: true }
+        );
+        res.send(result);
+      } catch (error) {
+        res.send({ message: "coudnt update cake", error });
       }
-      catch(error)
-      {
-        res.send({message:"coudnt update cake",error})
-      }
-    })
+    });
 
     // delete a cake
-    app.put("/baker/deleteCake/:shopId/:cakeId", async(req,res)=>
-    {
-      const {shopId,cakeId}=req.params
-      const update = req.body
+    app.put("/baker/deleteCake/:shopId/:cakeId", async (req, res) => {
+      const { shopId, cakeId } = req.params;
+      const update = req.body;
       // console.log("shop",shopId,"cake",cakeId,"upa", update)
 
-      try{
+      try {
         const result = await allCakeCollection.updateOne(
-          {_id: new ObjectId(cakeId),shop_id:shopId},
-          {$set:update},
-          {upsert:true})
+          { _id: new ObjectId(cakeId), shop_id: shopId },
+          { $set: update },
+          { upsert: true }
+        );
 
-          res.send(result)
+        res.send(result);
+      } catch (error) {
+        console.log({ message: "something went wrong", error });
+        res.send({ message: "something went wrong", error });
       }
-      catch(error)
-      {
-        console.log({message:"something went wrong",error})
-        res.send({message:"something went wrong",error})
-      }
-    })
+    });
 
     //Gather All Order of the Baker
     app.get("/bakerAllOrderCollection/:shopId", async (req, res) => {
