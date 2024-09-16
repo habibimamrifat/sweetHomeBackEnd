@@ -12,7 +12,7 @@ const M_password = process.env.Mongo_User_Password;
 
 // for file reading
 import fs from "fs";
-import { resolveMx } from "dns";
+// import { resolveMx } from "dns";
 
 // middleWare
 app.use(cors());
@@ -74,8 +74,14 @@ async function run() {
 
     // await dataInjection(allFevouriteCollection)
 
+    // server test
+    app.get("/", (req,res)=>{
+      res.send({message:"i am working"})
+    })
+     // server test
+
     // all cake collection for market place down
-    app.get("/", async (req, res) => {
+    app.get("/api/v2/home", async (req, res) => {
       try {
         const result = await allCakeCollection
           .find({
@@ -91,7 +97,7 @@ async function run() {
     // all cake collection for market place up
 
     // find a single cake
-    app.get("/findASingleCake/:cakeId", async (req, res) => {
+    app.get("/api/v2/findASingleCake/:cakeId", async (req, res) => {
       const { cakeId } = req.params;
       // console.log("server",cakeId)
       try {
@@ -110,7 +116,7 @@ async function run() {
     // find a single cake
 
     // all shop collection for market place down
-    app.get("/allShopCollection", async (req, res) => {
+    app.get("/api/v2/allShopCollection", async (req, res) => {
       const result = await allShopCollection.find().toArray();
       console.log(result);
       res.send(result);
@@ -120,14 +126,14 @@ async function run() {
     //all customer related apis are here down...........
 
     // create a customer
-    app.post("/signUpPage/customerSignUp", async (req, res) => {
+    app.post("/api/v2/signUpPage/customerSignUp", async (req, res) => {
       const customer = req.body;
       const result = await allCustomerCollection.insertOne(customer);
       res.send(result);
     });
 
     //login A customer
-    app.get("/customerSignIn/:email/:password", async (req, res) => {
+    app.get("/api/v2/customerSignIn/:email/:password", async (req, res) => {
       const { email, password } = req.params;
       try {
         const result = await allCustomerCollection.findOne({
@@ -151,7 +157,7 @@ async function run() {
     });
 
     // find a single customer
-    app.get("/findSingleCustomer/:customerId", async (req, res) => {
+    app.get("/api/v2/findSingleCustomer/:customerId", async (req, res) => {
       const { customerId } = req.params;
       try {
         const result = await allCustomerCollection.findOne({
@@ -174,7 +180,7 @@ async function run() {
     });
 
     //place an order
-    app.post("/customer/createAnOrder", async (req, res) => {
+    app.post("/api/v2/customer/createAnOrder", async (req, res) => {
       const orderData = req.body;
       // console.log("placed order",orderData)
       try {
@@ -186,7 +192,7 @@ async function run() {
     });
 
     //Gather All Order of the Customer
-    app.get("/customerAllOrderCollection/:customerId", async (req, res) => {
+    app.get("/api/v2/customerAllOrderCollection/:customerId", async (req, res) => {
       const { customerId } = req.params;
       // console.log("i am the shio pi",customerId)
 
@@ -202,7 +208,7 @@ async function run() {
     });
 
     // find fev cake list
-    app.get("/customerFaveCakeList/:customerId", async (req, res) => {
+    app.get("/api/v2/customerFaveCakeList/:customerId", async (req, res) => {
       const { customerId } = req.params;
 
       try {
@@ -219,7 +225,7 @@ async function run() {
 
     //add cake to favourite list
     app.post(
-      "/addCakeToThefavouriteList/:customerId/:cakeId",
+      "/api/v2/addCakeToThefavouriteList/:customerId/:cakeId",
       async (req, res) => {
         const fevCakeAndCustomer = req.body;
         const customerId = fevCakeAndCustomer.customerId;
@@ -262,14 +268,14 @@ async function run() {
     // all baker related apis are here down...........
 
     // create a bacer****
-    app.post("/signUpPage/bakerSignUp", async (req, res) => {
+    app.post("/api/v2/signUpPage/bakerSignUp", async (req, res) => {
       const baker = req.body;
       const result = await allBakerCollection.insertOne(baker);
       res.send(result);
     });
 
     // find singleShop
-    app.get("/baker/findSingleShop/:shopId", async (req, res) => {
+    app.get("/api/v2/baker/findSingleShop/:shopId", async (req, res) => {
       const { shopId } = req.params;
       // console.log("shopId",shopId)
       try {
@@ -287,14 +293,14 @@ async function run() {
     });
 
     //create a shop***
-    app.post("/signUpPage/bakerSignUp/createShop", async (req, res) => {
+    app.post("/api/v2/signUpPage/bakerSignUp/createShop", async (req, res) => {
       const shop = req.body;
       const result = await allShopCollection.insertOne(shop);
       res.send(result);
     });
 
     //log in a baker
-    app.get("/bakerSignIn/:email/:password", async (req, res) => {
+    app.get("/api/v2/bakerSignIn/:email/:password", async (req, res) => {
       const { email, password } = req.params;
       console.log("server", email, password);
       try {
@@ -328,7 +334,7 @@ async function run() {
     });
 
     //Gather Allcake of the Baker
-    app.get("/bakerAllCakeCollection/:shopId", async (req, res) => {
+    app.get("/api/v2/bakerAllCakeCollection/:shopId", async (req, res) => {
       const { shopId } = req.params;
       // console.log("i am the shio pi",shopId)
 
@@ -347,7 +353,7 @@ async function run() {
     });
 
     // add new cake from the baker
-    app.post("/baker/addnewcake", async (req, res) => {
+    app.post("/api/v2/baker/addnewcake", async (req, res) => {
       const cakeData = req.body;
       // console.log(cakeData)
       try {
@@ -359,7 +365,7 @@ async function run() {
     });
 
     // updateCake
-    app.put("/baker/UpdateACake/:cakeId", async (req, res) => {
+    app.put("/api/v2/baker/UpdateACake/:cakeId", async (req, res) => {
       const { cakeId } = req.params;
       const updateCake = req.body;
       // console.log(cakeId,updateCake)
@@ -377,7 +383,7 @@ async function run() {
     });
 
     // delete a cake
-    app.put("/baker/deleteCake/:shopId/:cakeId", async (req, res) => {
+    app.put("/api/v2/baker/deleteCake/:shopId/:cakeId", async (req, res) => {
       const { shopId, cakeId } = req.params;
       const update = req.body;
       // console.log("shop",shopId,"cake",cakeId,"upa", update)
@@ -397,7 +403,7 @@ async function run() {
     });
 
     //Gather All Order of the Baker
-    app.get("/bakerAllOrderCollection/:shopId", async (req, res) => {
+    app.get("/api/v2/bakerAllOrderCollection/:shopId", async (req, res) => {
       const { shopId } = req.params;
       // console.log("i am the shio pi",shopId)
 
@@ -413,7 +419,7 @@ async function run() {
     });
 
     // find single order of the baker
-    app.get("/bakerFindSingleOrder/:orderId", async (req, res) => {
+    app.get("/api/v2/bakerFindSingleOrder/:orderId", async (req, res) => {
       const { orderId } = req.params;
       // console.log("i am the shio pi",orderId)
 
@@ -431,7 +437,7 @@ async function run() {
     });
 
     // update order state
-    app.put("/baker/updateOrderState/:orderId", async (req, res) => {
+    app.put("/api/v2/baker/updateOrderState/:orderId", async (req, res) => {
       const { orderId } = req.params;
       const newData = req.body;
       console.log(orderId, newData);
@@ -462,11 +468,10 @@ async function run() {
 }
 run().catch(console.dir);
 
-// 66afc7bd3ca5334221ad5bbf
-// 66afc7bd3ca5334221ad5bbf
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-// ioyWWVgEzeH8GfNc
+
