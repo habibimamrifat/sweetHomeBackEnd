@@ -263,6 +263,56 @@ async function run() {
       }
     );
 
+    // find a customer for password reset
+    app.post("/api/v2/customer/passworReset", async(req,res)=>{
+      const {email, mobileNo}= req.body
+      console.log(email,mobileNo)
+      try
+      {
+        const request = await allCustomerCollection.findOne({
+          email:email,
+          $or:[
+            {mob:mobileNo},
+            {mobAlt:mobileNo}
+
+          ]
+        })
+
+        res.send(request)
+      }
+      catch(error)
+      {
+        res.send({message:"something went wrong"}, error)
+      }
+    })
+
+    // change customer password
+    app.put("/api/v2/customer/changePassword", async(req,res)=>{
+      const {id, newPassword} = req.body
+      console.log("server", id,newPassword)
+      try
+      {
+        const result = await allCustomerCollection.updateOne(
+          {  _id: new ObjectId(id)}, 
+          {
+            $set: {                   
+              password:newPassword,
+              reInterPassword:newPassword
+
+            }
+          },
+          {
+            upsert:true
+          }
+        );
+        res.send(result)
+      }
+      catch(error)
+      {
+        res.send({message:"something went wrong", error})
+      }
+  })
+
     //all customer related apis are here up.............
 
     // all baker related apis are here down...........
@@ -459,6 +509,55 @@ async function run() {
         res.send({ message: "failed to update the state =>server", error });
       }
     });
+
+    // find a Baker for password reset
+    app.post("/api/v2/baker/passworReset", async(req,res)=>{
+      const {email, mobileNo}= req.body
+      console.log(email,mobileNo)
+      try
+      {
+        const request = await allBakerCollection.findOne({
+          email:email,
+          $or:[
+            {mob:mobileNo},
+            {mobAlt:mobileNo}
+
+          ]
+        })
+
+        res.send(request)
+      }
+      catch(error)
+      {
+        res.send({message:"something went wrong"}, error)
+      }
+    })
+
+    // change baker password
+    app.put("/api/v2/baker/changePassword", async(req,res)=>{
+        const {id, newPassword} = req.body
+        try
+        {
+          const result = await allBakerCollection.updateOne(
+            {  _id: new ObjectId(id)}, 
+            {
+              $set: {                   
+                password:newPassword,
+                reInterPassword:newPassword
+  
+              }
+            },
+            {
+              upsert:true
+            }
+          );
+          res.send(result)
+        }
+        catch(error)
+        {
+          res.send({message:"something went wrong", error})
+        }
+    })
 
     // all baker related apis are here up.....
   } finally {
